@@ -342,7 +342,7 @@ fun EmployeeSettingScreen(navController: NavHostController) {
                                         thickness = 1.dp,
                                         modifier = Modifier.padding(vertical = 8.dp)
                                     )
-                                    Text("2. We are not responsible of loss of data in case of any isssues.")
+                                    Text("2. I am not responsible of loss of data in case of any isssues.")
                                     Divider(
                                         color = Color.Gray,
                                         thickness = 1.dp,

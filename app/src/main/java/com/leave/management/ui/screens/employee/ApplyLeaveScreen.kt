@@ -324,7 +324,7 @@ fun ApplyLeaveScreen(navController: NavHostController) {
                                 contentColor = MaterialTheme.colorScheme.onPrimaryContainer
                             )
                         ) {
-                            Text(text = "From Date: $fromDate", fontSize = 14.sp)
+                            Text(text = "From Date: \n$fromDate", fontSize = 14.sp)
                         }
                         Button(
                             onClick = { showDatePickerDialog(isFromDate = false) },
@@ -335,7 +335,7 @@ fun ApplyLeaveScreen(navController: NavHostController) {
                                 contentColor = MaterialTheme.colorScheme.onPrimaryContainer
                             )
                         ) {
-                            Text(text = "To Date: $toDate", fontSize = 14.sp)
+                            Text(text = "To Date: \n$toDate", fontSize = 14.sp)
                         }
                     }
 

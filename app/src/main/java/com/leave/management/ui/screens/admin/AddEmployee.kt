@@ -368,7 +368,7 @@ fun AddEmployeeScreen(navController: NavHostController) {
                                                                         documentReference.update("image_url", downloadUri.toString())
                                                                             .addOnSuccessListener {
 
-                                                                                Toast.makeText(mContext, "Successfully", Toast.LENGTH_SHORT).show()
+                                                                                Toast.makeText(mContext, "Employee Successfully Added", Toast.LENGTH_SHORT).show()
                                                                                 navController.navigate(ROUTE_VIEWEMPLOYEES)
                                                                                 showSaveEmployeeDialog = true
                                                                             }

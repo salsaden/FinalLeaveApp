@@ -70,12 +70,15 @@ import com.leave.management.navigation.ROUTE_ADMINDASBOARD
 import com.leave.management.navigation.ROUTE_ADMINLOGIN
 import com.leave.management.navigation.ROUTE_EMPLOYEEDASHBOARD
 import com.leave.management.ui.screens.employee.EmployeeBottomBar
+import com.leave.management.ui.screens.employee.userlogout
+//import kotlin.coroutines.jvm.internal.CompletedContinuation.context
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AdminAccount(navController: NavHostController) {
     val mContext = LocalContext.current
+    val context = LocalContext.current
     val sharedPreferences: SharedPreferences = mContext.getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE)
     val email = sharedPreferences.getString("loggedInUserEmail", "") ?: ""
 
@@ -89,6 +92,8 @@ fun AdminAccount(navController: NavHostController) {
     var newPassword by remember { mutableStateOf("") }
     var confirmNewPassword by remember { mutableStateOf("") }
     var errorMessage by remember { mutableStateOf("") }
+    var showLogoutDialog by remember { mutableStateOf(false) }
+
 
     LaunchedEffect(email) {
         if (email.isNotEmpty()) {
@@ -152,11 +157,42 @@ fun AdminAccount(navController: NavHostController) {
                     }
                 },
                 actions = {
-                    IconButton(onClick = { logout(mContext, navController) }) {
+                    IconButton(onClick = { showLogoutDialog = true }) {
                         Icon(
-                            painter = painterResource(id = R.drawable.logout),
+                            painter = painterResource(id = R.drawable.logout), // Replace with your icon
                             contentDescription = null,
                             tint = Color.White
+                        )
+                    }
+                    if (showLogoutDialog) {
+                        androidx.compose.material3.AlertDialog(
+                            onDismissRequest = { showLogoutDialog = false },
+                            title = { Text(text = "Confirm") },
+                            text = { Text("Are you sure you want to log out?") },
+                            confirmButton = {
+                                androidx.compose.material3.Button(
+                                    onClick = {
+                                        showLogoutDialog = false
+                                        logout(context, navController)
+                                    },
+                                    colors = androidx.compose.material3.ButtonDefaults.buttonColors(
+                                        containerColor = Color(0xff6f2dc2),
+                                        contentColor = Color.White
+                                    )
+                                ) {
+                                    Text("Yes")
+                                }
+                            },
+                            dismissButton = {
+                                androidx.compose.material3.Button(
+                                    onClick = { showLogoutDialog = false },
+                                    colors = androidx.compose.material3.ButtonDefaults.buttonColors(
+                                        containerColor = Color.Gray
+                                    )
+                                ) {
+                                    Text("No")
+                                }
+                            }
                         )
                     }
                 },
@@ -188,11 +224,8 @@ fun AdminAccount(navController: NavHostController) {
                           modifier = Modifier.padding(16.dp),
                           horizontalAlignment = Alignment.CenterHorizontally
                       ) {
-                          AsyncImage(
-                              model = ImageRequest.Builder(LocalContext.current)
-                                  .data("https://apensoftwares.co.ke/images/media/1669670270logo.png")
-                                  .crossfade(true)
-                                  .build(),
+                          Image(
+                              painter = painterResource(id = R.drawable.adminlogin), // Replace with your image resource name
                               contentDescription = "Profile picture",
                               modifier = Modifier
                                   .size(128.dp)
@@ -235,11 +268,6 @@ fun AdminAccount(navController: NavHostController) {
                           )
                           TextWithIcon(
                               label = "Mobile",
-                              value = userMobile,
-                              icon = Icons.Default.Phone
-                          )
-                          TextWithIcon(
-                              label = "Password",
                               value = userMobile,
                               icon = Icons.Default.Phone
                           )

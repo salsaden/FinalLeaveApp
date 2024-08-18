@@ -158,7 +158,7 @@ fun GreetingSection() {
             )
         }
         Image(
-            painter = painterResource(id = R.drawable.leaveicon2),
+            painter = painterResource(id = R.drawable.adminlogin),
             contentDescription = "Profile Image",
             modifier = Modifier
                 .size(40.dp)

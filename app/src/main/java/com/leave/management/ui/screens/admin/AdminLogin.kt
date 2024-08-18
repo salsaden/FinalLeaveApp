@@ -315,7 +315,7 @@ fun AdminLoginScreen(navController: NavHostController) {
 //                modifier = Modifier.clickable { navController.navigate(ROUTE_REGISTER) }
 //            )
 //        }
-//        Spacer(modifier = Modifier.height(5.dp))
+        Spacer(modifier = Modifier.height(5.dp))
 
     }
 }
